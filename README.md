@@ -72,7 +72,7 @@ Brödtext: [PT Mono](https://fonts.google.com/specimen/PT+Mono?query=PT+Mono)
 **För att få Godkänt ska du:**
 * Ha gjort uppgiften med ```vue create```
 * Gjort enligt spec och Figma skissen (det behöver inte vara exakt enligt design)
-* Det är en single file application (SPA).
+* Det är en single page application (SPA).
 
 **För att Väl Godkänt ska du:**
 * Spara korten och alla nya kort som läggs till i local storage samt läsa från local storage
