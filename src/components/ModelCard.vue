@@ -2,7 +2,7 @@
   <main class="card">
       <div class="cardcontainer">
         <img src="../assets/wifi.svg" alt="wifi">
-        <img :src= "imgPath" alt="logo">
+        <img :src="imgPath" alt="logo">
         <img src="../assets/chip.svg" alt="chip">
         <p>{{user.cardNumber}}</p>
         <p>{{user.cardHolderName}}</p>
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+
 export default {
   props: ['user'],
   computed: {

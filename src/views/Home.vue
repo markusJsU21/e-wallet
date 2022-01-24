@@ -13,7 +13,7 @@
         //det klickade kortet. Kortets information ska också sparas i en datapunkt som kan heta activecard. Därefter ska ActiveCard anropas med 
         //prop fron activecard. -->
 
-      <button @click="$emit('toggleView')">ADD A NEW CARD</button>
+      <button @click="$emit('toggle-view')">ADD A NEW CARD</button>
   </main>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <main class="register-form">
       <h1>ADD A NEW BANK CARD</h1>
-      <form @submit.prevent="submit" @change="updateModel">
+      <form @submit.prevent="submit" @change="updateModel" id="newCardForm">
 
         <label for="nr">CARD NUMBER</label>
         <input id="nr" type="text" v-model="user.cardNumber">
@@ -18,8 +18,12 @@
           <option value="blockchain">BLOCK CHAIN INC</option>
           <option value="evil">EVIL CORP</option>
         </select>
-        <button @click="$emit('toggleView')">ADD CARD</button>
+        <p>
+        <input  type="submit" value="Add card">
+        </p>
+
       </form>
+      
       
   </main>
 </template>
@@ -44,11 +48,12 @@ export default {
   },
   methods: {
       submit(){
-          this.$emit('send', {...this.user})
+         this.$emit('send', {...this.user})
+         this.$emit('toggle-view')
       },
       updateModel(){
           
-          this.$emit('updateModel', {...this.user})
+          this.$emit('update-model', {...this.user})
       }
   }
 }

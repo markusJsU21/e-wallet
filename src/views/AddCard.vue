@@ -1,7 +1,7 @@
 <template>
   <main class="add-card">
-      <ModelCard  :user="modelcard"/>
-      <RegisterForm @send="register" :cards="cards" @updateModel="updateModel"/>
+      <ModelCard :user="modelcard"/>
+      <RegisterForm @send="register" :cards="cards" @update-model="updateModel" @toggle-view="$emit('toggle-view')"/>
   </main>
 </template>
 
@@ -16,7 +16,7 @@ export default {
   components: {RegisterForm, ModelCard},
   methods: {
     register(formData){
-      this.$emit('storeUserData', {...formData})
+      this.$emit('store-user-data', {...formData})
     },
     updateModel(formData){
       this.modelcard = {...formData}

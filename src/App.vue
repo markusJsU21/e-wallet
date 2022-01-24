@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Home @toggleView="toggleView" v-if="currentPage === 'Home'" :cards="cards" @storeUserData="storeData"/>
-    <AddCard v-else-if="currentPage === 'AddCard'" @storeUserData="storeData();toggleView()" :cards="cards"/>
+    <Home @toggle-view="toggleView" v-if="currentPage === 'Home'" :cards="cards" @storeUserData="storeData"/>
+    <AddCard v-else-if="currentPage === 'AddCard'" @store-user-data="storeData" @toggle-view="toggleView" :cards="cards"/>
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
   },
   methods:{
     storeData(formData){
-      this.cards.push(...formData)
+      this.cards.push({...formData})
        console.log(this.cards)
     },
     toggleView(){
