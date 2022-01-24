@@ -2,7 +2,7 @@
   <main class="card">
       <div class="cardcontainer">
         <img src="../assets/wifi.svg" alt="wifi">
-        <img :src="imgPath" alt="logo">
+        <img :src="require(`../assets/${imgPath}`)" alt="logo">
         <img src="../assets/chip.svg" alt="chip">
         <p>{{user.cardNumber}}</p>
         <p>{{user.cardHolderName}}</p>
@@ -20,7 +20,7 @@ export default {
   props: ['user'],
   computed: {
     imgPath(){
-      return '../assets/' + this.user.vendor + '.svg'
+      return `${this.user.vendor}.svg`
     }
   }
 }

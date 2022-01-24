@@ -1,16 +1,15 @@
 <template>
   <main class="card-stack">
     <ul>
-    <li><ActiveCard :key="bankcard" v-for="bankcard of cards" :card="card" @click="$emit('carddata', bankcard)"/></li>
+    <li :key="user.id" v-for="user of cards" @click="$emit('activate-card', user)"><ModelCard :user="user"/></li>
     </ul>
-    <p>testfrånCardstack</p>
   </main>
 </template>
 
 <script>
-import ActiveCard from './ModelCard.vue'
+import ModelCard from './ModelCard.vue'
 export default {
-    components: {ActiveCard},
+    components: {ModelCard},
     props: ['cards'],
 
 }

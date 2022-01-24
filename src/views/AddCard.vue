@@ -16,6 +16,7 @@ export default {
   components: {RegisterForm, ModelCard},
   methods: {
     register(formData){
+      
       this.$emit('store-user-data', {...formData})
     },
     updateModel(formData){

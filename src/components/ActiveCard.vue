@@ -16,14 +16,9 @@
 export default {
     props:['activecard'],
     data(){return{
-         img: '',
+         
     }},
-    created(){
-        
-        if(this.activecard.user.vendor == 'BITCOIN INC'){
-            this.activecard.user.img = '../assets/bitcoin.svg'
-        }
-    },
+    
    
 }
 </script>

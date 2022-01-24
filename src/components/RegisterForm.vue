@@ -42,7 +42,7 @@ export default {
         ccv: '',
         vendor: '',
         img: '',
-        active: false, 
+        active: false,
       }
     }
   },
