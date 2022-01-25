@@ -1,9 +1,10 @@
 <template>
   <main class="card" @click="$emit('active-card', user)">
     
-      <div class="cardcontainer" :class="user.vendor">
+      <div class="cardcontainer" :class="user.vendor.name">
         <div class="wifi-and-logo">
-          <img src="../assets/wifi.svg" alt="wifi">
+          
+          <img src="../assets/wifi_white.svg" alt="wifi">
           <img :src="require(`../assets/${imgPath}`)" alt="logo">
         </div>
         <img src="../assets/chip.svg" alt="chip">
@@ -28,7 +29,7 @@ export default {
   props: ['user'],
   computed: {
     imgPath(){
-      return `${this.user.vendor}.svg`
+      return `${this.user.vendor.name}.svg`
     }
   },
   

@@ -54,14 +54,16 @@ export default {
     font-family: 'PT Mono', sans-serif;
   }
   .small-text, label{
-  font-size: .5rem;
+  font-size: .7rem;
+  color:rgb(56, 56, 56);
 }
 
   button, #submit{
     height: 3rem;
     border: 1px solid black;
     border-radius: 5px;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    margin: 2rem 0 2rem 0;
   }
  
   ul{

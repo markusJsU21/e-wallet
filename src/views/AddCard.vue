@@ -10,17 +10,16 @@
 import RegisterForm from '../components/RegisterForm.vue'
 import ModelCard from '../components/ModelCard.vue'
 export default {
-  created(){
-    this.modelcard = {vendor: 'model'}
-  },
   data(){return{
     modelcard: {
         cardNumber: '999999999',
         cardHolderName: 'TESTPERSON',
         validThru: '1892',
         ccv: '123',
-        vendor: 'model',
-        img: '',
+        vendor: {
+          name: 'model',
+          wifi: '',
+        }, 
     }
   }},
   props:['cards'],

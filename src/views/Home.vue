@@ -47,8 +47,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
  button{
     width: 90%;
-  }
+}
+p{
+    width: 70%;
+    text-align:center;
+}
 </style>

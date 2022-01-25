@@ -12,7 +12,7 @@
         <label for="ccv">CCV</label>
         <input id="ccv" type="text" v-model="user.ccv">
         <label for="vendor">VENDOR</label>
-        <select name="vendor" id="vendor" v-model="user.vendor">
+        <select name="vendor" id="vendor" v-model="user.vendor.name">
           <option value="bitcoin">BITCOIN INC</option>
           <option value="ninja">NINJA BANK</option>
           <option value="blockchain">BLOCK CHAIN INC</option>
@@ -40,7 +40,11 @@ export default {
         cardHolderName: '',
         validThru: '',
         ccv: '',
-        vendor: '',
+        vendor: {
+            name:'',
+            wifi:'',
+        }, 
+            
         img: '',
         
       },
@@ -49,7 +53,7 @@ export default {
   },
   methods: {
       submit(){
-    
+        if(this.cardNumber.length != 16)
          this.$emit('send', {...this.user})
          this.$emit('toggle-view')
       },
@@ -57,8 +61,14 @@ export default {
           
           this.$emit('update-model', {...this.user})
       }
-  }
+  },
+    // computed:{
+    //     setWifi(){
+    //        return this.vendor.wifi = this.vendor.name
+    //     }
+    // }
 }
+
 </script>
 
 <style scoped>
@@ -69,6 +79,7 @@ export default {
         display:flex;
         flex-direction: column;
         width: 100%;
+        justify-content: space-evenly;
         
     }
     input, select{
