@@ -1,5 +1,6 @@
 <template>
   <main class="add-card">
+    <h1>ADD A NEW <br> BANK CARD</h1>
       <ModelCard :user="modelcard"/>
       <RegisterForm @send="register" :cards="cards" @update-model="updateModel" @toggle-view="$emit('toggle-view')"/>
   </main>
@@ -9,8 +10,18 @@
 import RegisterForm from '../components/RegisterForm.vue'
 import ModelCard from '../components/ModelCard.vue'
 export default {
+  created(){
+    this.modelcard = {vendor: 'model'}
+  },
   data(){return{
-    modelcard: {}
+    modelcard: {
+        cardNumber: '999999999',
+        cardHolderName: 'TESTPERSON',
+        validThru: '1892',
+        ccv: '123',
+        vendor: 'model',
+        img: '',
+    }
   }},
   props:['cards'],
   components: {RegisterForm, ModelCard},
@@ -29,5 +40,5 @@ export default {
 </script>
 
 <style>
-
+  
 </style>

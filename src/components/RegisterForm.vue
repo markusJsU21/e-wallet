@@ -1,8 +1,8 @@
 <template>
   <main class="register-form">
-      <h1>ADD A NEW BANK CARD</h1>
-      <form @submit.prevent="submit" @change="updateModel" id="newCardForm">
-
+      
+      <form @submit.prevent="submit" @change="updateModel">
+<!-- //Testa on key up elller down. -->
         <label for="nr">CARD NUMBER</label>
         <input id="nr" type="text" v-model="user.cardNumber">
         <label for="name">CARDHOLDER NAME</label>
@@ -18,8 +18,8 @@
           <option value="blockchain">BLOCK CHAIN INC</option>
           <option value="evil">EVIL CORP</option>
         </select>
-        <p>
-        <input  type="submit" value="Add card">
+        <p id="submit-container">
+        <input id="submit" type="submit" value="ADD CARD">
         </p>
 
       </form>
@@ -42,12 +42,14 @@ export default {
         ccv: '',
         vendor: '',
         img: '',
-        active: false,
-      }
+        
+      },
+      
     }
   },
   methods: {
       submit(){
+    
          this.$emit('send', {...this.user})
          this.$emit('toggle-view')
       },
@@ -59,8 +61,32 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+    main{
+        width: 90%;
+    }
+    form{
+        display:flex;
+        flex-direction: column;
+        width: 100%;
+        
+    }
+    input, select{
+        height: 3rem;
+        width: 100%;
+        border-radius:5px;
+        border-style: none;
+    }
 
+    #submit-container{
+        display: flex;
+        justify-content: center;
+        width:100%;
+    }
+
+    #submit{
+        width:100%;
+    }
 </style>
 
 

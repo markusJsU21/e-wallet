@@ -4,10 +4,10 @@
       <p>ACTIVE CARD</p>
       
         <ModelCard v-if="cards.length" :user="activecard"/>
-        <p v-else>You haven't added any cards to your wallet yet.</p>
+        <p v-if="!cards.length">You haven't added any cards to your wallet yet.</p>
     
         <p>CARDS</p>
-        <CardStack @activate-card="activateCard" :cards="cards"/>
+        <CardStack @active-card="activateCard" :cards="cards"/>
 
         <!-- //varje kort i listan ska få en onclick som först tar bort active classen från alla kort i listan och sedan lägger den på
         //det klickade kortet. Kortets information ska också sparas i en datapunkt som kan heta activecard. Därefter ska ActiveCard anropas med 
@@ -35,23 +35,20 @@ export default {
     data(){return{
         activecard:{},
     }},
-    methods: {
-        activateCard(){
-            
-                for(let card of this.cards){
-                card.active = false
-            }
-            this.bankcard.active = true
-            this.activecard = this.bankcard
-            
-            
-            
+    methods:{
+        activateCard(user){
+            this.activecard = user
+
         }
     }
+    
+    
     
 }
 </script>
 
 <style>
-
+ button{
+    width: 90%;
+  }
 </style>
