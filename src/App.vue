@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <button id="toggle-button" @click="toggleView">Toggle view</button>
+    <button id="clear-cards" @click="clearCards">Delete all cards</button>
     <Home @toggle-view="toggleView" v-if="currentPage === 'Home'" :cards="cards" @storeUserData="storeData"/>
     <AddCard v-else-if="currentPage === 'AddCard'" @store-user-data="storeData" @toggle-view="toggleView" :cards="cards"/>
   </div>
@@ -12,7 +14,13 @@ import {Home, AddCard} from '../src/views/index'
 
 export default {
   components: {Home, AddCard},
-  
+  mounted(){
+    let savedCards = JSON.parse(localStorage.getItem('cards'))
+    if(savedCards){
+      this.cards = savedCards
+    }
+    
+    },
   data() { return{
     name: "App",
     currentPage: 'Home',
@@ -23,6 +31,7 @@ export default {
   methods:{
     storeData(formData){
       this.cards.push(formData)
+      localStorage.setItem('cards', JSON.stringify(this.cards) )
     },
     toggleView(){
       if(this.currentPage === 'Home'){
@@ -31,6 +40,10 @@ export default {
       else{
         this.currentPage = 'Home'
       }
+    },
+    clearCards(){
+            this.cards = []
+            localStorage.clear();
     }
   }
 }
@@ -47,6 +60,10 @@ export default {
     --model: #D7D7D7;
   }
 
+  body{
+    background-color: rgb(50, 45, 78);
+  }
+
   h1{
     font-family: 'Source Sans Pro', sans-serif;
   }
@@ -57,30 +74,56 @@ export default {
   .small-text, label{
   font-size: .7rem;
   color:rgb(82, 82, 82);
-  margin:2rem 0 .3rem 0;
+  margin:1rem 0 .3rem 0;
   }
 
+
+
   button, #submit{
-    height: 3rem;
+    height: 4rem;
     border: 1px solid black;
     border-radius: 5px;
     font-size: 1.5rem;
-    margin: 2rem 0 2rem 0h;
+    margin: 2rem 0 2rem 0;
     font-weight: bold;
   }
- 
+  #submit{
+    background-color: black;
+    color: white;
+  }
+  #toggle-button, #clear-cards{
+    width: 4rem;
+    border:none;
+    position:fixed;
+    right:85%;
+    top:80%;
+    margin: 0;
+    border-radius: 50%;
+    box-shadow: -12px 8px 74px -13px rgba(255, 255, 255, 0.75);
+-webkit-box-shadow: -12px 8px 74px -13px rgba(255, 255, 255, 0.75);
+-moz-box-shadow: -12px 8px 74px -13px rgba(0, 0, 0, 0.75);
+font-size: .8rem;
+    transform: rotate(-20deg);
+    color: rgb(250, 67, 67);
+    background-color:rgb(245, 192, 79);
+  }
+
+  #clear-cards{
+    right: 15%;
+    top: 20%;
+  }
   ul{
     list-style: none;
     margin:0;
     padding:0;
   }
   #app{
+ 
   display:flex;
   justify-content: center;
   align-content: center;
   margin:0;
   padding:0;
- 
 }
 
 main{
@@ -89,6 +132,7 @@ main{
   display:flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 10px;
 }
 
 </style>

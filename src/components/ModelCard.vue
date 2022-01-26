@@ -4,7 +4,7 @@
       <div class="cardcontainer" :class="user.vendor.name">
       
         <div class="wifi-and-logo">
-          <img src="../assets/wifi_white.svg" alt="wifi">
+          <img id="wifi" src="../assets/wifi_white.svg" alt="wifi">
           <img :src="require(`../assets/${imgPath}`)" alt="logo">
         </div>
         <div class="chip">
@@ -21,7 +21,7 @@
           <p class="small-text">VALID THRU</p>
         </div>
         <div class="name-and-valid">
-          <p>{{user.cardHolderName}}</p>
+          <p>{{this.name}}</p>
           <p>{{v[0]}}{{v[1]}}/{{v[2]}}{{v[3]}}</p>
         </div>      
       </div>
@@ -43,11 +43,11 @@ export default {
     },
     v(){
       return this.user.validThru
+    },
+    name(){
+      return this.user.cardHolderName.toUpperCase()
     }
-
   },
-  
-  
 }
 </script>
 
@@ -60,52 +60,45 @@ h2{
   letter-spacing: .2rem;
   margin:0;
 }
+
+.card{
+  border-radius:10px;
+  background-color:rgba(128, 128, 128, 0);
+}
 .cardcontainer{
   margin-bottom: 2rem;
-  padding:0;
   width:382px;
   height: 241px;
   border-radius:10px;
-  /* flex-direction: column; */
   box-shadow: -2px 2px 5px -2px rgba(0,0,0,0.75);
 -webkit-box-shadow: -2px 2px 5px -2px rgba(0,0,0,0.75);
 -moz-box-shadow: -2px 2px 5px -2px rgba(0,0,0,0.75);
-overflow:hidden;
+
 }
 .wifi-and-logo{
-  display:flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width:90%;
-  margin: auto;
+  margin: 1rem auto 0 auto;
   
 }
 .chip{
-  display:flex;
-  width: 90%;
-  margin: .5rem auto;
+  margin: 0 auto;
+}
+
+.wifi-and-logo, .chip, .number-container, .small-text-box, .name-and-valid{
+display:flex;
+flex-direction: row;
+width: 90%;
+justify-content: space-between;
 }
 
 .number-container{
-  margin: auto;
-  width:90%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  margin: 1rem auto .5rem auto;
 }
 .small-text-box{
-  display:flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 90%;
+  
   margin: auto;
 }
-.name-and-valid{
-  display:flex;
-  flex-direction: row;
-  justify-content: space-between;
+.name-and-valid{ 
   padding:0;
-  width: 90%;
   margin: auto;
 }
 .bitcoin{

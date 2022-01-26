@@ -23,9 +23,8 @@ export default {
           this.activeCardData = user
           this.$emit('active-card', this.activeCardData)
         }
-            // this.$emit('toggleActive', {...this.user})
             
-        }
+      }
     }
 
 

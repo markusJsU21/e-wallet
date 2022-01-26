@@ -29,9 +29,9 @@ export default {
         if(this.cards.length === 1){
                 this.cards[0].active = true
                 this.activecard = this.cards[0]
-            }
-        
+        }
     },
+    
     data(){return{
         activecard:{},
     }},
@@ -39,8 +39,11 @@ export default {
         activateCard(user){
             this.activecard = user
 
-        }
-    }
+        },
+        
+    },
+
+
     
     
     
