@@ -35,7 +35,7 @@ export default {
   
 .grid-container{
   display:grid;
-  grid-auto-rows: 3rem;
+  grid-auto-rows: 2rem;
   height: 400px;
   
 }

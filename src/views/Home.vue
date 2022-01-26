@@ -1,12 +1,12 @@
 <template>
   <main class="home">
       <h1>E-WALLET</h1>
-      <p>ACTIVE CARD</p>
       
-        <ModelCard v-if="cards.length" :user="activecard"/>
+      
+        <ModelCard v-if="cards.length > 1" :user="activecard"/>
         <p v-if="!cards.length">You haven't added any cards to your wallet yet.</p>
     
-        <p>CARDS</p>
+        
         <CardStack @active-card="activateCard" :cards="cards"/>
 
         <!-- //varje kort i listan ska få en onclick som först tar bort active classen från alla kort i listan och sedan lägger den på

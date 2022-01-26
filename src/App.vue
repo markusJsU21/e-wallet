@@ -50,20 +50,23 @@ export default {
   h1{
     font-family: 'Source Sans Pro', sans-serif;
   }
-  p, label, button, #submit{
+  p, label, button, #submit, h2{
     font-family: 'PT Mono', sans-serif;
+    margin: 0;
   }
   .small-text, label{
   font-size: .7rem;
-  color:rgb(56, 56, 56);
-}
+  color:rgb(82, 82, 82);
+  margin:2rem 0 .3rem 0;
+  }
 
   button, #submit{
     height: 3rem;
     border: 1px solid black;
     border-radius: 5px;
     font-size: 1.5rem;
-    margin: 2rem 0 2rem 0;
+    margin: 2rem 0 2rem 0h;
+    font-weight: bold;
   }
  
   ul{

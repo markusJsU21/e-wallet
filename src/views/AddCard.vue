@@ -12,9 +12,9 @@ import ModelCard from '../components/ModelCard.vue'
 export default {
   data(){return{
     modelcard: {
-        cardNumber: '999999999',
+        cardNumber: '9999999999999999',
         cardHolderName: 'TESTPERSON',
-        validThru: '1892',
+        validThru: 'MMYY',
         ccv: '123',
         vendor: {
           name: 'model',
