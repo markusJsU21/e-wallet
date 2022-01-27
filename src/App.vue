@@ -108,6 +108,11 @@ font-size: .8rem;
     background-color:rgb(245, 192, 79);
   }
 
+  #toggle-button:hover, #clear-cards:hover{
+    background-color: rgb(241, 243, 124);
+    transition:150ms;
+  }
+
   #clear-cards{
     right: 15%;
     top: 20%;

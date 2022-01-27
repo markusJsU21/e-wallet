@@ -1,15 +1,12 @@
 <template>
   <main class="register-form">
       <p v-if="errors.length">
-            <b>Please correct the following errors:</b>
+            <b>Please correct the following errors:</b> 
             <ul>
                 <li :key="error" v-for="error in errors">*{{error}}</li>
             </ul>
      </p>
-      
       <form @submit.prevent="validate();submit()" @input="updateModel">
-<!-- //Testa on key up elller down. -->
-        
         <label for="nr">CARD NUMBER</label>
         <input id="nr" type="text" v-model="user.cardNumber" maxlength="16">
         <label for="name">CARDHOLDER NAME</label>
@@ -34,16 +31,12 @@
         <p id="submit-container">
         <input id="submit" type="submit" value="ADD CARD">
         </p>
-
       </form>
-      
-      
   </main>
 </template>
 
 <script>
 export default {
-    
     props: ['cards'],
     data(){
     return{
@@ -59,22 +52,18 @@ export default {
         }, 
       },
       errors: [],
-      
-      
     }
   },
   methods: {
       validate(){
           if(this.user.cardNumber.length != 16){
-        
             this.errors.push('Card number must be 16 digits.')
-        
             }
             if(this.user.cardHolderName.length == 0){
                 this.errors.push('Name must have at least one character.')
             }
             if(this.user.ccv.length < 3){
-              this.errors.push('Ccv must have 3 digits.')
+              this.errors.push('CCV must have 3 digits.')
             }
             if(this.user.vendor.name == 'model'){
               this.errors.push('Please select a bank vendor.')
@@ -85,8 +74,7 @@ export default {
         if(!this.errors.length){
         this.$emit('send', {...this.user})
          this.$emit('toggle-view')
-        }
-         
+        }       
       },
       updateModel(){
           this.errors = []
@@ -94,9 +82,7 @@ export default {
       }
   },
 }
-
 </script>
-
 <style scoped>
     main{
         width: 90%;
@@ -106,7 +92,6 @@ export default {
         flex-direction: column;
         width: 100%;
         justify-content: space-evenly;
-        
     }
     input, select{
         height: 3rem;
@@ -114,13 +99,11 @@ export default {
         border-radius:5px;
         border-style: none;
     }
-
     #submit-container{
         display: flex;
         justify-content: center;
         width:100%;
     }
-
     #submit{
         width:100%;
     }
