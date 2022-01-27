@@ -77,6 +77,9 @@ export default {
   margin:1rem 0 .3rem 0;
   }
 
+  .small-text{
+    margin-top: 1rem;
+  }
 
 
   button, #submit{

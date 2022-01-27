@@ -46,7 +46,9 @@ export default {
     },
     name(){
       return this.user.cardHolderName.toUpperCase()
-    }
+    },
+    
+  
   },
 }
 </script>

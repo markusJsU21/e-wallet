@@ -14,7 +14,7 @@
         <div class="valid-and-ccv">
           <div class="label-and-input-valid">
             <label for="valid">VALID THRU</label>
-            <input type="text" id="valid" v-model="user.validThru" maxlength="4">
+            <input type="text" id="valid" v-model="user.validThru" maxlength="4" placeholder="MMYY">
           </div>
           <div class="label-and-input-ccv">
             <label for="ccv">CCV</label>
