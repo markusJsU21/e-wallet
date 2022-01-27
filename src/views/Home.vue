@@ -3,7 +3,7 @@
       <h1>E-WALLET</h1>
       
       
-        <ModelCard v-if="cards.length > 1" :user="activecard"/>
+        <ModelCard v-if="cards.length > 1 && activecard" :user="activecard"/>
         <p v-if="!cards.length">You haven't added any cards to your wallet yet.</p>
     
         
@@ -33,7 +33,7 @@ export default {
     },
     
     data(){return{
-        activecard:{},
+        activecard: this.cards[0],
     }},
     methods:{
         activateCard(user){

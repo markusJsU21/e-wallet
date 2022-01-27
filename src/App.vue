@@ -14,7 +14,7 @@ import {Home, AddCard} from '../src/views/index'
 
 export default {
   components: {Home, AddCard},
-  mounted(){
+  created(){
     let savedCards = JSON.parse(localStorage.getItem('cards'))
     if(savedCards){
       this.cards = savedCards

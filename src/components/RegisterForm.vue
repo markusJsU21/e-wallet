@@ -98,6 +98,7 @@ export default {
         width: 100%;
         border-radius:5px;
         border-style: none;
+        border: 0.2px solid black;
     }
     #submit-container{
         display: flex;

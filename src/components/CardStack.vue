@@ -1,10 +1,8 @@
 <template>
   <main class="card-stack">
     
-    <ul>
-      <div class="grid-container">
+    <ul class="grid-container">
     <li :key="user.id" v-for="user of cards"><ModelCard :user="user" @active-card="activeCard"/></li>
-     </div>
     </ul>
    
   </main>

@@ -45,6 +45,7 @@ export default {
       return this.user.validThru
     },
     name(){
+      
       return this.user.cardHolderName.toUpperCase()
     },
     
@@ -75,6 +76,7 @@ h2{
   box-shadow: -2px 2px 5px -2px rgba(0,0,0,0.75);
 -webkit-box-shadow: -2px 2px 5px -2px rgba(0,0,0,0.75);
 -moz-box-shadow: -2px 2px 5px -2px rgba(0,0,0,0.75);
+ 
 
 }
 .wifi-and-logo{
@@ -104,7 +106,10 @@ justify-content: space-between;
   margin: auto;
 }
 .bitcoin{
+
+  
   background-color: var(--bitcoin);
+
 }
 .ninja{
   background-color: var(--ninja);
