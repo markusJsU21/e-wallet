@@ -107,21 +107,24 @@ justify-content: space-between;
 }
 .bitcoin{
 
-  
-  background-color: var(--bitcoin);
+  background: linear-gradient(248.04deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 99.07%), #FFAE34;
+  /* background-color: var(--bitcoin); */
 
 }
 .ninja{
-  background-color: var(--ninja);
+  background: linear-gradient(248.3deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%), #222222;
+  /* background-color: var(--ninja); */
   color:white;
 }
 .blockchain{
-  background-color: var(--blockchain);
+  background: linear-gradient(248.52deg, rgba(0, 0, 0, 0.15) 1.49%, rgba(0, 0, 0, 0) 100%), #8B58F9;
+  /* background-color: var(--blockchain); */
   color:white;
 
 }
 .evil{
-  background-color: var(--evil);
+  background: linear-gradient(248.3deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0) 100%), #F33355;
+  /* background-color: var(--evil); */
   color:white;
 }
 

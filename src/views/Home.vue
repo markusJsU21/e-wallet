@@ -3,9 +3,14 @@
       <h1>E-WALLET</h1>
       
       
-        <ModelCard v-if="cards.length > 1 && activecard" :user="activecard"/>
+        <ModelCard v-if="activecard" :user="activecard"/>
         <p v-if="!cards.length">You haven't added any cards to your wallet yet.</p>
-    
+
+        <div v-if="deleteCard" class="delete-card-box">
+            <p>Do you really want to delete this card?</p>
+            <button @click="deleteThisCard">Yes</button><button @click="keepCard">No</button>
+        </div>
+        <button v-if="activecard" @click="deleteCard = !deleteCard">Delete this card</button>
         
         <CardStack @active-card="activateCard" :cards="cards"/>
 
@@ -34,12 +39,31 @@ export default {
     
     data(){return{
         activecard: this.cards[0],
+        deleteCard: false,
     }},
     methods:{
         activateCard(user){
             this.activecard = user
-
         },
+        deleteThisCard(){
+            let newCards = []
+            if(this.activecard){
+                let cardToDelete = this.cards.findIndex(element => element.cardNumber = this.activecard.cardNumber)
+                newCards = this.cards.splice(cardToDelete, 1)
+            this.cards = newCards
+            }
+            else if(this.card.length == 1){
+                let cardToDelete = this.cards[0]
+                newCards = this.cards.splice(cardToDelete, 1)
+            this.cards = newCards
+            }
+            
+            this.activecard = null
+            this.deleteCard = false
+        },
+        keepCard(){
+            this.deleteCard = false
+        }
         
     },
 
