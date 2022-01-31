@@ -6,12 +6,10 @@
         <ModelCard v-if="activecard" :user="activecard" :cards="cards"/>
         <p v-if="!cards.length">You haven't added any cards to your wallet yet.</p>
 
-        <div v-if="deleteCard" class="delete-card-box">
-            <p>Do you really want to delete this card?</p>
-            <button @click="deleteThisCard">Yes</button><button @click="keepCard">No</button>
-        </div>
-        <button v-if="activecard" @click="deleteCard = !deleteCard">Delete this card</button>
-        <CardStack v-if="!(cards.length===1)" @active-card="activateCard" :cards="cards"/>
+        <DeleteCard v-if="activecard" :activecard="activecard" :deletecard="deleteCard" 
+        @deleteThisCard="deleteThisCard" @keepCard="keepCard" @remove-box="deleteCard = !deleteCard" />
+        
+        <CardStack v-if="cards.length > 1" @active-card="activateCard" :cards="cards"/>
 
       <button @click="$emit('toggle-view')">ADD A NEW CARD</button>
   </main>
@@ -22,25 +20,19 @@
 <script>
 import CardStack from '../components/CardStack.vue'
 import ModelCard from '../components/ModelCard.vue'
+import DeleteCard from '../components/DeleteCardDialog.vue'
 export default {
-    components: {CardStack, ModelCard},
-    props: ['cards'],
+    components: {CardStack, ModelCard, DeleteCard},
+    props: ['cards', 'activecard'],
     data(){return{
-        activecard: this.cards[0],
-        deleteCard: false,      
+        deleteCard: false,
+        activeCardData: {}      
     }},
-
-    // computed:{
-    //     activateSingleCard(){
-    //        if(this.cards < 2){
-    //            return this.activecard = this.cards[0]
-    //        } 
-    //     }
-    // },
 
     methods:{
         activateCard(user){
-            this.activecard = user
+            this.activeCardData = user
+            this.$emit('activate-card', this.activeCardData)
         },
         
         keepCard(){
@@ -49,7 +41,7 @@ export default {
         deleteThisCard() {
             const cardToDelete = {...this.activecard}
             this.$emit('deleteThisCard', cardToDelete)
-            this.activecard = null
+            
             this.deleteCard = false
         }
         

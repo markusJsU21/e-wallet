@@ -2,7 +2,7 @@
   <div id="app">
     <button id="toggle-button" @click="toggleView">Toggle view</button>
     <button id="clear-cards" @click="clearCards">Delete all cards</button>
-    <Home @toggle-view="toggleView" v-if="currentPage === 'Home'" :cards="cards" @storeUserData="storeData" @deleteThisCard="deleteThisCard"/>
+    <Home @toggle-view="toggleView" v-if="currentPage === 'Home'" :cards="cards" :activecard="activecard" @storeUserData="storeData" @deleteThisCard="deleteThisCard" @activate-card="activateCard"/>
     <AddCard v-else-if="currentPage === 'AddCard'" @store-user-data="storeData" @toggle-view="toggleView" :cards="cards"/>
   </div>
 </template>
@@ -19,12 +19,15 @@ export default {
     if(savedCards){
       this.cards = savedCards
     }
-    
+    if(this.cards){
+      this.activecard = this.cards[0]
+    }
     },
   data() { return{
     name: "App",
     currentPage: 'Home',
     cards: [],
+    activecard: null,
   }
   },
   methods:{
@@ -46,19 +49,21 @@ export default {
     },
     deleteThisCard(card){
            
-            if(card){
+           
                 const nextCards = this.cards.filter(c => c.id != card.id)
                 console.log(nextCards)
-
                 this.cards = nextCards
-            
+                if(this.cards.length != 1){
+                this.activecard = null
             }
-            else if(this.card.length == 1){
-                let cardToDelete = this.cards[0]
-                this.cards = this.cards.splice(cardToDelete, 1)
+            else{
+               this.activecard = this.cards[0] 
             }
             
         },
+    activateCard(card){
+      this.activecard = card
+    }    
   }
 }
 </script>
