@@ -1,17 +1,21 @@
 <template>
   <main class="home">
-      <h1>E-WALLET</h1>
       
-      
-        <ModelCard v-if="activecard" :user="activecard" :cards="cards"/>
-        <p v-if="!cards.length">You haven't added any cards to your wallet yet.</p>
-
-        <DeleteCard v-if="activecard" :activecard="activecard" :deletecard="deleteCard" 
-        @deleteThisCard="deleteThisCard" @keepCard="keepCard" @remove-box="deleteCard = !deleteCard" />
+      <div v-if="deleteCard" class="fade-layer"></div>
+        <h1>E-WALLET</h1>
         
-        <CardStack v-if="cards.length > 1" @active-card="activateCard" :cards="cards"/>
+        
+            <ModelCard v-if="activecard" :user="activecard" :cards="cards"/>
+            <p v-if="!cards.length">You haven't added any cards to your wallet yet.</p>
 
-      <button @click="$emit('toggle-view')">ADD A NEW CARD</button>
+            <transition name="fade">
+            <DeleteCard v-if="activecard" :activecard="activecard" :deletecard="deleteCard" 
+            @deleteThisCard="deleteThisCard" @keepCard="keepCard" @remove-box="deleteCard = !deleteCard" />
+            </transition>
+            <CardStack v-if="cards.length > 1" @active-card="activateCard" :cards="cards"/>
+
+        <button @click="$emit('toggle-view')">ADD A NEW CARD</button>
+      
   </main>
 </template>
 
@@ -55,6 +59,23 @@ export default {
 </script>
 
 <style scoped>
+.home{
+    position:relative;
+}
+.fade-layer{
+    height:100%;
+    width:100%;
+    background-color: rgba(0, 0, 0, 0.466);
+    position:absolute;
+    z-index: 2;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: .2s;
+}
+.fade-leave-active {
+  opacity: 0;
+}
 
  button{
     width: 90%;

@@ -14,7 +14,10 @@ export default {
     modelcard: {
         cardNumber: '9999999999999999',
         cardHolderName: 'Testperson Persson',
-        validThru: 'MMYY',
+        validThru: {
+          year: 'YYYY',
+          month: 'MM',
+        },
         ccv: '123',
         vendor: {
           name: 'model',

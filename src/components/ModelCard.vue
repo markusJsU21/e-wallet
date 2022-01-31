@@ -22,7 +22,7 @@
         </div>
         <div class="name-and-valid">
           <p>{{this.name}}</p>
-          <p>{{v[0]}}{{v[1]}}/{{v[2]}}{{v[3]}}</p>
+          <p>{{vm[0]}}{{vm[1]}}/{{vy[2]}}{{vy[3]}}</p>
         </div>      
       </div>
     
@@ -41,8 +41,11 @@ export default {
     n(){
       return this.user.cardNumber
     },
-    v(){
-      return this.user.validThru
+    vy(){
+      return this.user.validThru.year
+    },
+    vm(){
+      return this.user.validThru.month
     },
     name(){
       

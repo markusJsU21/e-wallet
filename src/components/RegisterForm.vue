@@ -14,7 +14,17 @@
         <div class="valid-and-ccv">
           <div class="label-and-input-valid">
             <label for="valid">VALID THRU</label>
-            <input type="text" id="valid" v-model="user.validThru" maxlength="4" placeholder="MMYY">
+            <!-- <input type="text" id="valid" v-model="user.validThru" maxlength="4" placeholder="MMYY"> -->
+            <div class="year-and-month">
+              <select name="month" id="valid" v-model="user.validThru.month">
+                <option v-for="month of months" :key="month" :value="month">{{month}}</option>
+            </select>
+                <p> / </p>
+              <select name="year" id="valid" v-model="user.validThru.year">
+                <option v-for="year of validYears" :key="year" :value="year">{{year}}</option>
+              </select>
+              
+            </div>
           </div>
           <div class="label-and-input-ccv">
             <label for="ccv">CCV</label>
@@ -44,7 +54,10 @@ export default {
         id: crypto.randomUUID(),
         cardNumber: '',
         cardHolderName: '',
-        validThru: '',
+        validThru: {
+          year: '',
+          month: '',
+        },
         ccv: '',
         vendor: {
             name:'model',
@@ -52,10 +65,28 @@ export default {
         }, 
       },
       errors: [],
+      date: new Date(),
+      months: ['01', '02', '03', '04', '05', '06',
+      '07', '08', '09', '10', '11', '12']
     }
   },
   
-        
+  computed:{
+      thisYear(){ 
+        return  this.date.getFullYear();
+      },
+      yearPlusOne(){
+        return  this.date.getFullYear() + 1;
+      },
+      validYears(){
+        return [ (this.date.getFullYear().toString()), 
+        (this.date.getFullYear() + 1).toString(),
+        (this.date.getFullYear() + 2).toString(),
+        (this.date.getFullYear() + 3).toString(),
+        (this.date.getFullYear() + 4).toString(),
+        ]
+      }
+  },      
   methods: {
       validate(){
           if(this.user.cardNumber.length != 16){
@@ -72,7 +103,7 @@ export default {
             }
             for(let card of this.cards){
               if(this.user.cardNumber == card.cardNumber){
-                this.errors.push('This card number is already in use')
+                this.errors.push('This card number is already in use.')
               }
             }
       },
@@ -102,10 +133,9 @@ export default {
     }
     input, select{
         height: 3rem;
-        width: 100%;
         border-radius:5px;
-        border-style: none;
         border: 0.2px solid black;
+        
     }
     #submit-container{
         display: flex;
@@ -118,19 +148,28 @@ export default {
     li{
         color:red;
     }
-    #ccv, #valid{
-      width: 100%;
-    }
     .valid-and-ccv{
       width: 100%;
       display:flex;
       flex-direction: row;
-      margin: auto;
       justify-content: space-between;
     }
     .label-and-input-valid, .label-and-input-ccv{
       display:flex;
       flex-direction: column;
+      width: 45%;
+    }
+    .year-and-month{
+      display:flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .year-and-month select{
+      width: 45%;
+    }
+    .year-and-month p{
+      align-self: center;
+      color: rgb(153, 153, 153);
     }
 </style>
 
