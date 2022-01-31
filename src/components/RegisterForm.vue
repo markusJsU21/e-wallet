@@ -70,6 +70,11 @@ export default {
             if(this.user.vendor.name == 'model'){
               this.errors.push('Please select a bank vendor.')
             }
+            for(let card of this.cards){
+              if(this.user.cardNumber == card.cardNumber){
+                this.errors.push('This card number is already in use')
+              }
+            }
       },
       submit(){
         
