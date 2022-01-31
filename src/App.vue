@@ -2,7 +2,7 @@
   <div id="app">
     <button id="toggle-button" @click="toggleView">Toggle view</button>
     <button id="clear-cards" @click="clearCards">Delete all cards</button>
-    <Home @toggle-view="toggleView" v-if="currentPage === 'Home'" :cards="cards" @storeUserData="storeData"/>
+    <Home @toggle-view="toggleView" v-if="currentPage === 'Home'" :cards="cards" @storeUserData="storeData" @deleteThisCard="deleteThisCard"/>
     <AddCard v-else-if="currentPage === 'AddCard'" @store-user-data="storeData" @toggle-view="toggleView" :cards="cards"/>
   </div>
 </template>
@@ -25,7 +25,6 @@ export default {
     name: "App",
     currentPage: 'Home',
     cards: [],
-    
   }
   },
   methods:{
@@ -44,7 +43,22 @@ export default {
     clearCards(){
             this.cards = []
             localStorage.clear();
-    }
+    },
+    deleteThisCard(card){
+           
+            if(card){
+                const nextCards = this.cards.filter(c => c.id != card.id)
+                console.log(nextCards)
+
+                this.cards = nextCards
+            
+            }
+            else if(this.card.length == 1){
+                let cardToDelete = this.cards[0]
+                this.cards = this.cards.splice(cardToDelete, 1)
+            }
+            
+        },
   }
 }
 </script>

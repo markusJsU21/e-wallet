@@ -48,8 +48,6 @@ export default {
       
       return this.user.cardHolderName.toUpperCase()
     },
-    
-  
   },
 }
 </script>

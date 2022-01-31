@@ -41,7 +41,7 @@ export default {
     data(){
     return{
       user:{
-        id: (this.cards.length),
+        id: crypto.randomUUID(),
         cardNumber: '',
         cardHolderName: '',
         validThru: '',
@@ -54,6 +54,8 @@ export default {
       errors: [],
     }
   },
+  
+        
   methods: {
       validate(){
           if(this.user.cardNumber.length != 16){

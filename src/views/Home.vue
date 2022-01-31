@@ -3,7 +3,7 @@
       <h1>E-WALLET</h1>
       
       
-        <ModelCard v-if="activecard" :user="activecard"/>
+        <ModelCard v-if="activecard" :user="activecard" :cards="cards"/>
         <p v-if="!cards.length">You haven't added any cards to your wallet yet.</p>
 
         <div v-if="deleteCard" class="delete-card-box">
@@ -11,12 +11,7 @@
             <button @click="deleteThisCard">Yes</button><button @click="keepCard">No</button>
         </div>
         <button v-if="activecard" @click="deleteCard = !deleteCard">Delete this card</button>
-        
-        <CardStack @active-card="activateCard" :cards="cards"/>
-
-        <!-- //varje kort i listan ska få en onclick som först tar bort active classen från alla kort i listan och sedan lägger den på
-        //det klickade kortet. Kortets information ska också sparas i en datapunkt som kan heta activecard. Därefter ska ActiveCard anropas med 
-        //prop fron activecard. -->
+        <CardStack v-if="!(cards.length===1)" @active-card="activateCard" :cards="cards"/>
 
       <button @click="$emit('toggle-view')">ADD A NEW CARD</button>
   </main>
@@ -30,38 +25,31 @@ import ModelCard from '../components/ModelCard.vue'
 export default {
     components: {CardStack, ModelCard},
     props: ['cards'],
-    created(){
-        if(this.cards.length === 1){
-                this.cards[0].active = true
-                this.activecard = this.cards[0]
-        }
-    },
-    
     data(){return{
         activecard: this.cards[0],
-        deleteCard: false,
+        deleteCard: false,      
     }},
+
+    // computed:{
+    //     activateSingleCard(){
+    //        if(this.cards < 2){
+    //            return this.activecard = this.cards[0]
+    //        } 
+    //     }
+    // },
+
     methods:{
         activateCard(user){
             this.activecard = user
         },
-        deleteThisCard(){
-            let newCards = []
-            if(this.activecard){
-                let cardToDelete = this.cards.findIndex(element => element.cardNumber = this.activecard.cardNumber)
-                newCards = this.cards.splice(cardToDelete, 1)
-            this.cards = newCards
-            }
-            else if(this.card.length == 1){
-                let cardToDelete = this.cards[0]
-                newCards = this.cards.splice(cardToDelete, 1)
-            this.cards = newCards
-            }
-            
-            this.activecard = null
+        
+        keepCard(){
             this.deleteCard = false
         },
-        keepCard(){
+        deleteThisCard() {
+            const cardToDelete = {...this.activecard}
+            this.$emit('deleteThisCard', cardToDelete)
+            this.activecard = null
             this.deleteCard = false
         }
         
