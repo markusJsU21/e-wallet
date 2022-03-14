@@ -6,7 +6,7 @@
         
         
             <ModelCard v-if="activecard" :user="activecard" :cards="cards"/>
-            <p v-if="!cards.length">You haven't added any cards to your wallet yet.</p>
+            <p v-if="cards.length<2">You haven't added any cards to your wallet yet.</p>
 
             <transition name="fade">
             <DeleteCard v-if="activecard" :activecard="activecard" :deletecard="deleteCard" 
